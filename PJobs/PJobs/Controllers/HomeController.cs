@@ -15,6 +15,8 @@ namespace PJobs.Controllers
         private readonly ILogger<HomeController> _logger;
 
         private TinTuyenDungRepository tinTuyenDungRepository = new TinTuyenDungRepository();
+        private UngVienRepository ungVienRepository = new UngVienRepository();
+        private PhanhoiRepository phanhoiRepository = new PhanhoiRepository();
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -31,18 +33,24 @@ namespace PJobs.Controllers
         {
             return View();
         }
-        public IActionResult Admin1()
+       
+        public IActionResult Contact()
         {
-            return View();
+            PhanHoi model = new PhanHoi();
+            return View(model);
         }
-        public IActionResult Admin2()
+        [HttpPost]
+        public IActionResult Contact(PhanHoi model)
         {
-            return View();
+            model.TinhTrang = 0;//
+            DateTime currentDate =  DateTime.Now;
+            
+            model.NgayPhanHoi = currentDate;
+            phanhoiRepository.themphanhoi(model);
+            ViewBag.mess = "Thong tin đã được gửi";
+            return View(model);
         }
-        public IActionResult Index1()
-        {
-            return View();
-        }
+
         public IActionResult Text()
         {
             return View();
