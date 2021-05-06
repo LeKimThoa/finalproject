@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore;
 using PJobs.Models;
+using PJobs.Repository;
 
 namespace PJobs
 {
@@ -29,7 +30,17 @@ namespace PJobs
             services.AddControllersWithViews();
 
             var connectionString = Configuration.GetConnectionString("VieclamConnectionString");
+<<<<<<< Updated upstream
             services.AddDbContext<VIECLAMContext>(options => options.UseSqlServer(connectionString));
+=======
+            services.AddDbContext<VIECLAMDBContextcs>(options => options.UseSqlServer());
+            //dangky dịc vu
+            services.AddTransient<TinTuyenDungRepository, TinTuyenDungRepository> ();
+            services.AddTransient<UngVienRepository, UngVienRepository>();
+            services.AddTransient<NgangNgheRepository, NgangNgheRepository>();
+          
+
+>>>>>>> Stashed changes
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

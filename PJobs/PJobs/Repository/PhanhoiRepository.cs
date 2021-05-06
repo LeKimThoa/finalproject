@@ -17,6 +17,37 @@ namespace PJobs.Repository
             ctx.SaveChanges();
             return ph;
         }
+        public List<PhanHoi> dsPhanHoi()
+        {
+            return ctx.PhanHois.ToList();
+        }
+        public List<PhanHoi> xoaphanhoi(int ph)
+        {
+
+          PhanHoi ph_db = ctx.PhanHois.Where(x => x.MaPhanHoi == ph).SingleOrDefault();
+            ctx.PhanHois.Remove(ph_db);
+            ctx.SaveChanges();
+            return ctx.PhanHois.ToList();
+        }
+
+        public PhanHoi suaphanhoi(PhanHoi ph)
+        {
+
+            PhanHoi ph_db = ctx.PhanHois.Where(x => x.MaPhanHoi == ph.MaPhanHoi).SingleOrDefault();
+            //MaPhanHoi, NoiDungPhanHoi, TinhTrang, NgayPhanHoi, TieuDe, Email, HoTen
+            ph_db.NoiDungPhanHoi = ph.NoiDungPhanHoi;
+            ph_db.TinhTrang = ph.TinhTrang;
+            ph_db.NgayPhanHoi = ph.NgayPhanHoi;
+            ph_db.TieuDe = ph.TieuDe;
+            ph_db.Email = ph.Email;
+            ph_db.HoTen = ph.HoTen;
+            ctx.SaveChanges();
+            return ph;
+        }
+        public List<PhanHoi> timkiemPhanHoi_theongay(DateTime ngay)
+        {
+            return ctx.PhanHois.Where(ph => ph.NgayPhanHoi == ngay).ToList();
+        }
 
     }
 }

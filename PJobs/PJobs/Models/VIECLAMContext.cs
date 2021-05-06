@@ -21,7 +21,10 @@ namespace PJobs.Models
         public virtual DbSet<KiNang> KiNangs { get; set; }
         public virtual DbSet<NhaTuyenDung> NhaTuyenDungs { get; set; }
         public virtual DbSet<PhanHoi> PhanHois { get; set; }
+        public virtual DbSet<QuanHuyen> QuanHuyens { get; set; }
+        public virtual DbSet<ThanhPho> ThanhPhos { get; set; }
         public virtual DbSet<ThongTinDiaDiem> ThongTinDiaDiems { get; set; }
+        public virtual DbSet<ThongTinLinhVuc> ThongTinLinhVucs { get; set; }
         public virtual DbSet<ThongTinNganhNghe> ThongTinNganhNghes { get; set; }
         public virtual DbSet<TinTuyenDung> TinTuyenDungs { get; set; }
         public virtual DbSet<UngVien> UngViens { get; set; }
@@ -48,7 +51,13 @@ namespace PJobs.Models
 
                 entity.ToTable("Blog");
 
-                entity.Property(e => e.MaBlog).ValueGeneratedNever();
+                entity.Property(e => e.AnhBlog)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NgayDangBlog)
+                    .HasColumnType("date")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.NoiDungBlog).IsRequired();
 
@@ -56,11 +65,15 @@ namespace PJobs.Models
                     .IsRequired()
                     .HasMaxLength(50);
 
+                entity.Property(e => e.Thumbnail)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.MaNgheNavigation)
                     .WithMany(p => p.Blogs)
                     .HasForeignKey(d => d.MaNghe)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Blog__MaNghe__1B0907CE");
+                    .HasConstraintName("FK__Blog__MaNghe__182C9B23");
             });
 
             modelBuilder.Entity<KiNang>(entity =>
@@ -69,7 +82,7 @@ namespace PJobs.Models
 
                 entity.ToTable("KiNang");
 
-                entity.Property(e => e.Tenkinang).HasMaxLength(250);
+                entity.Property(e => e.TenKiNang).HasMaxLength(50);
             });
 
             modelBuilder.Entity<NhaTuyenDung>(entity =>
@@ -79,9 +92,12 @@ namespace PJobs.Models
 
                 entity.ToTable("NhaTuyenDung");
 
-                entity.Property(e => e.MaNhaTuyenDung).ValueGeneratedNever();
+                entity.HasIndex(e => e.Email, "IX_NhaTuyenDung")
+                    .IsUnique();
 
-                entity.Property(e => e.AnhDaiDien).HasColumnType("image");
+                entity.Property(e => e.AnhDaiDien)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.DiaChiHoatDong)
                     .IsRequired()
@@ -102,6 +118,10 @@ namespace PJobs.Models
 
                 entity.Property(e => e.MoTaCongTy).HasMaxLength(255);
 
+                entity.Property(e => e.NgayTao)
+                    .HasColumnType("date")
+                    .HasDefaultValueSql("(getdate())");
+
                 entity.Property(e => e.Sdt)
                     .IsRequired()
                     .HasMaxLength(12)
@@ -112,6 +132,12 @@ namespace PJobs.Models
                 entity.Property(e => e.TenCongTy)
                     .IsRequired()
                     .HasMaxLength(255);
+
+                entity.HasOne(d => d.LinhVucNavigation)
+                    .WithMany(p => p.NhaTuyenDungs)
+                    .HasForeignKey(d => d.LinhVuc)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NhaTuyenDung_ThongTinLinhVuc");
             });
 
             modelBuilder.Entity<PhanHoi>(entity =>
@@ -121,31 +147,73 @@ namespace PJobs.Models
 
                 entity.ToTable("PhanHoi");
 
+                entity.Property(e => e.Email).HasMaxLength(255);
+
+                entity.Property(e => e.HoTen).HasMaxLength(255);
+
                 entity.Property(e => e.NgayPhanHoi).HasColumnType("date");
 
                 entity.Property(e => e.NoiDungPhanHoi)
                     .IsRequired()
                     .HasMaxLength(255);
 
-                entity.Property(e => e.Tieude).HasMaxLength(255);
+                entity.Property(e => e.TieuDe).HasMaxLength(50);
+            });
 
-                entity.HasOne(d => d.MaCongTyNavigation)
-                    .WithMany(p => p.PhanHois)
-                    .HasForeignKey(d => d.MaCongTy)
-                    .HasConstraintName("FK__PhanHoi__MaCongT__1920BF5C");
+            modelBuilder.Entity<QuanHuyen>(entity =>
+            {
+                entity.HasKey(e => e.MaQuan);
 
-                entity.HasOne(d => d.MaUngVienNavigation)
-                    .WithMany(p => p.PhanHois)
-                    .HasForeignKey(d => d.MaUngVien)
-                    .HasConstraintName("FK__PhanHoi__MaUngVi__1FCDBCEB");
+                entity.ToTable("QuanHuyen");
+
+                entity.Property(e => e.TenQuan)
+                    .IsRequired()
+                    .HasMaxLength(255);
+            });
+
+            modelBuilder.Entity<ThanhPho>(entity =>
+            {
+                entity.HasKey(e => e.MaThanhPho);
+
+                entity.ToTable("ThanhPho");
+
+                entity.Property(e => e.TenThanhPho)
+                    .IsRequired()
+                    .HasMaxLength(255);
             });
 
             modelBuilder.Entity<ThongTinDiaDiem>(entity =>
             {
-                entity.HasKey(e => new { e.MaThanhPho, e.MaQuanHuyen })
-                    .HasName("PK__ThongTin__4CA3260C0519C6AF");
-
                 entity.ToTable("ThongTinDiaDiem");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.HasOne(d => d.MaNhaTuyenDungNavigation)
+                    .WithMany(p => p.ThongTinDiaDiems)
+                    .HasForeignKey(d => d.MaNhaTuyenDung)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ThongTinDiaDiem_NhaTuyenDung");
+
+                entity.HasOne(d => d.MaQuanNavigation)
+                    .WithMany(p => p.ThongTinDiaDiems)
+                    .HasForeignKey(d => d.MaQuan)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ThongTinDiaDiem_QuanHuyen");
+
+                entity.HasOne(d => d.MaThanhPhoNavigation)
+                    .WithMany(p => p.ThongTinDiaDiems)
+                    .HasForeignKey(d => d.MaThanhPho)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ThongTinDiaDiem_ThanhPho");
+            });
+
+            modelBuilder.Entity<ThongTinLinhVuc>(entity =>
+            {
+                entity.HasKey(e => e.MaLinhVuc);
+
+                entity.ToTable("ThongTinLinhVuc");
+
+                entity.Property(e => e.TenLinhVuc).HasMaxLength(50);
             });
 
             modelBuilder.Entity<ThongTinNganhNghe>(entity =>
@@ -159,11 +227,11 @@ namespace PJobs.Models
 
                 entity.Property(e => e.TenNghe).HasMaxLength(50);
 
-                entity.HasOne(d => d.Ma)
+                entity.HasOne(d => d.MaLinhVucNavigation)
                     .WithMany(p => p.ThongTinNganhNghes)
-                    .HasForeignKey(d => new { d.MaThanhPho, d.MaQuanHuyen })
+                    .HasForeignKey(d => d.MaLinhVuc)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ThongTinNganhNghe_ThongTinDiaDiem");
+                    .HasConstraintName("FK_ThongTinNganhNghe_ThongTinLinhVuc");
             });
 
             modelBuilder.Entity<TinTuyenDung>(entity =>
@@ -172,8 +240,6 @@ namespace PJobs.Models
                     .HasName("PK__TinTuyen__34CFEE03145C0A3F");
 
                 entity.ToTable("TinTuyenDung");
-
-                entity.Property(e => e.MaTinTuyenDung).ValueGeneratedNever();
 
                 entity.Property(e => e.Hinhanh)
                     .HasMaxLength(50)
@@ -191,24 +257,18 @@ namespace PJobs.Models
                 entity.Property(e => e.MucLuong).HasColumnType("numeric(18, 0)");
 
                 entity.Property(e => e.NgayDang)
-                    .IsRequired()
-                    .IsRowVersion()
-                    .IsConcurrencyToken();
+                    .HasColumnType("date")
+                    .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.NgayHetHan).HasColumnType("datetime");
+                entity.Property(e => e.NgayHetHan).HasColumnType("date");
 
                 entity.Property(e => e.QuyenLoi)
                     .IsRequired()
                     .HasMaxLength(255);
 
                 entity.Property(e => e.Tieude)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
+                    .HasMaxLength(255)
                     .HasColumnName("tieude");
-
-                entity.Property(e => e.ViTriTuyenDung)
-                    .IsRequired()
-                    .HasMaxLength(50);
 
                 entity.HasOne(d => d.MaCongTyNavigation)
                     .WithMany(p => p.TinTuyenDungs)
@@ -216,10 +276,11 @@ namespace PJobs.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__TinTuyenD__MaCon__1BFD2C07");
 
-                entity.HasOne(d => d.MaNganhNgheNavigation)
+                entity.HasOne(d => d.ViTriTuyenDungNavigation)
                     .WithMany(p => p.TinTuyenDungs)
-                    .HasForeignKey(d => d.MaNganhNghe)
-                    .HasConstraintName("FK_TinTuyenDung_ThongTinNganhNghe");
+                    .HasForeignKey(d => d.ViTriTuyenDung)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TinTuyenDung_ThongTinNganhNghe1");
             });
 
             modelBuilder.Entity<UngVien>(entity =>
@@ -228,6 +289,9 @@ namespace PJobs.Models
                     .HasName("PK__UngVien__8FDBA8A90AD2A005");
 
                 entity.ToTable("UngVien");
+
+                entity.HasIndex(e => e.Email, "IX_UngVien")
+                    .IsUnique();
 
                 entity.Property(e => e.AnhDaiDien)
                     .HasMaxLength(255)
@@ -259,6 +323,11 @@ namespace PJobs.Models
                     .IsRequired()
                     .HasMaxLength(255);
 
+                entity.Property(e => e.NgayTaoTk)
+                    .HasColumnType("date")
+                    .HasColumnName("NgayTaoTK")
+                    .HasDefaultValueSql("(getdate())");
+
                 entity.Property(e => e.Sdt)
                     .IsRequired()
                     .HasMaxLength(10)
@@ -272,9 +341,9 @@ namespace PJobs.Models
 
                 entity.ToTable("UngVienDangKy");
 
-                entity.Property(e => e.MaDangKy).ValueGeneratedNever();
-
-                entity.Property(e => e.NgayDangky).HasColumnType("date");
+                entity.Property(e => e.NgayDangky)
+                    .HasColumnType("date")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.MaTinTuyenDungNavigation)
                     .WithMany(p => p.UngVienDangKies)

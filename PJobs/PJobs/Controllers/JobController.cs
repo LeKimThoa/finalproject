@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 using Microsoft.AspNetCore.Mvc;
+=======
+﻿using Microsoft.AspNetCore.Mvc;
+>>>>>>> Stashed changes
 using Microsoft.Extensions.Logging;
 using PJobs.Models;
 using System;
@@ -50,7 +54,12 @@ namespace PJobs.Controllers
             //passing model/data to  view
             List<NewJoin> lst = q.ToList();
 
+<<<<<<< Updated upstream
             JobViewModel model = new JobViewModel() {
+=======
+            JobViewModel model = new JobViewModel()
+            {
+>>>>>>> Stashed changes
 
                 DSKiNang = ctx.KiNangs.ToList(),
                 NewJoins = lst
@@ -87,9 +96,16 @@ namespace PJobs.Controllers
                          TenCongTy = ntd.TenCongTy,
                          SoLuongTuyen = ttd.SoLuongTuyen,
                          AnhCongTy = ntd.AnhDaiDien
+<<<<<<< Updated upstream
                      }) ;
             //passing model/data to  view
             return View(q);
     }
+=======
+                     });
+            //passing model/data to  view
+            return View(q);
+        }
+>>>>>>> Stashed changes
     }
 }

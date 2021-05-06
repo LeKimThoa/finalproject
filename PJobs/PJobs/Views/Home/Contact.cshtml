@@ -1,56 +1,110 @@
 ﻿@model PhanHoi
-
-<section class="section" id="contact-us" style="margin-top: 0">
-    <div class="container-fluid">
-        <div class="row">
-
-            @ViewBag.mess
-            <div class="col-lg-3"></div>
-            <div class="col-lg-6 col-md-6 col-xs-12">
-                <div class="contact-form section-bg" style="background-image: url(~/images/contact-1-720x480.jpg)">
-
-                    @using (Html.BeginForm("Contact","Home",FormMethod.Post)) {
-
-
-
-
-
-                        @*<form id="contact" action="" method="post">*@
-                        <div class="row">
-                            <div class="col-md-6 col-sm-12">
-                                <fieldset>.
-                                     
-                                     @*<input name="name" type="text" id="name" placeholder="Your Name*" required="">*@
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                       
-                                    </fieldset>
-                                </div>
-                <div class="col-md-12 col-sm-12">
-                    <fieldset>
-                        @Html.TextBoxFor(m => m.Tieude)
-                    </fieldset>
-                </div>
-                <div class="col-lg-12">
-                    <fieldset>
-                        @Html.TextAreaFor(m => m.NoiDungPhanHoi)
-                    </fieldset>
-                </div>
-                <div class="col-lg-12">
-                    <fieldset>
-                        <button type="submit" id="form-submit" class="main-button">Send Message</button>
-                    </fieldset>
-                </div>
-            </div>
-            
-            }
+@{
+    Layout = "~/Views/Shared/_LayoutContact.cshtml";
+}
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+           
         </div>
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="wrapper">
+                    <div class="row no-gutters mb-5">
+                        <div class="col-md-7">
+                            @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
+                            {
+                                <div class="contact-wrap w-100 p-md-5 p-4">
+                                    <h3 class="mb-4">Contact Us</h3>
+                                    <div id="form-message-warning" class="mb-4"></div>
+                                    
+                                    <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="label" for="name">Full Name</label>
+                                                    @Html.TextBoxFor(m => m.HoTen)
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="label" for="email">Email</label>
+                                                    @Html.TextBoxFor(m => m.Email)
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="subject">Subject</label>
+                                                    @Html.TextBoxFor(m => m.TieuDe)
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="#">Message</label>
+                                                    @Html.TextAreaFor(m => m.NoiDungPhanHoi)
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="submit" value="Send Message" class="btn btn-primary">
+                                                    <div class="submitting"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            }
+                            </div>
+                        <div class="col-md-5 d-flex align-items-stretch">
+                            <div id="map" style= "padding:10px;">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15677.567189285395!2d106.69624277663459!3d10.781274477090822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f49256511e5%3A0x3eaf539e231b99bf!2zQuG6v24gTmdow6ksIFF14bqtbiAxLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1620116945577!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="dbox w-100 text-center">
+                                <div class="icon d-flex align-items-center justify-content-center">
+                                    <span class="fa fa-map-marker"></span>
+                                </div>
+                                <div class="text">
+                                    <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="dbox w-100 text-center">
+                                <div class="icon d-flex align-items-center justify-content-center">
+                                    <span class="fa fa-phone"></span>
+                                </div>
+                                <div class="text">
+                                    <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="dbox w-100 text-center">
+                                <div class="icon d-flex align-items-center justify-content-center">
+                                    <span class="fa fa-paper-plane"></span>
+                                </div>
+                                <div class="text">
+                                    <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="dbox w-100 text-center">
+                                <div class="icon d-flex align-items-center justify-content-center">
+                                    <span class="fa fa-globe"></span>
+                                </div>
+                                <div class="text">
+                                    <p><span>Website</span> <a href="#">yoursite.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-3"></div>
         </div>
     </div>
 </section>
-
-

@@ -9,7 +9,6 @@ namespace PJobs.Models
     {
         public UngVien()
         {
-            PhanHois = new HashSet<PhanHoi>();
             UngVienDangKies = new HashSet<UngVienDangKy>();
             UngVienKiNangs = new HashSet<UngVienKiNang>();
         }
@@ -28,7 +27,6 @@ namespace PJobs.Models
         public long? LuotXem { get; set; }
         public DateTime? NgayTaoTk { get; set; }
 
-        public virtual ICollection<PhanHoi> PhanHois { get; set; }
         public virtual ICollection<UngVienDangKy> UngVienDangKies { get; set; }
         public virtual ICollection<UngVienKiNang> UngVienKiNangs { get; set; }
     }
