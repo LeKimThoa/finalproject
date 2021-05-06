@@ -14,6 +14,7 @@
     <None Include="wwwroot\Admin\.github\workflows\codeql.yml" />
     <None Include="wwwroot\Admin\.github\workflows\docs.yml" />
     <None Include="wwwroot\Admin\.github\workflows\lint.yml" />
+    <None Include="wwwroot\images\backgroundtest.jpg" />
     <None Include="wwwroot\js\site.js" />
   </ItemGroup>
 
@@ -23,6 +24,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="assets\images\" />
   </ItemGroup>
 
 </Project>

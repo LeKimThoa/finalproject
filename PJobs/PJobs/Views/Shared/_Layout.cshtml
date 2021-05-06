@@ -7,14 +7,14 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;display=swap" rel="stylesheet">
 
-    <title>PHPJabbers.com | Free Job Agency Website Template</title>
+    <title>PJobs | Find your perfect jobs in the world</title>
 
     <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css">
 
     <link rel="stylesheet" type="text/css" href="~/css/font-awesome.css">
 
     <link rel="stylesheet" href="~/css/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+   
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
     <style  type="text/css" >
@@ -80,7 +80,7 @@
     </div>
     <!-- ***** Preloader End ***** -->
     <!-- ***** Header Area Start ***** -->
-    <header class="header-area header-sticky">
+    <header class="header-area header-stickyr">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -88,20 +88,21 @@
                         <!-- ***** Logo Start ***** -->
                         <a href="index.html" class="logo"><em>P</em>JOBS</a>
                         <!-- ***** Logo End ***** -->
+
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li><a href="index.html" class="active">Trang chủ</a></li>
+                            <li><a href="#" class="active">Trang chủ</a></li>
                             <li><a href="jobs.html">Ứng viên</a></li>
                             <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Bolg</a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
 
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="about.html">About Us</a>
-                                    <a class="dropdown-item" href="blog.html">Blog</a>
-                                    <a class="dropdown-item" href="testimonials.html">Testimonials</a>
+                                <div class="dropdown-menu"  x-placement="bottom-start" style="position: absolute; transform: translate3d(12px, 40px, 0px); top: 0px; left: 0px;">
+                                    <a class="dropdown-item" href="/aboutus">Giới thiệu công ty</a>
+                                    <a class="dropdown-item" href="/blog">Blog</a>
+                                    <a class="dropdown-item" href="/home/contact">Phản hồi</a>
                                 </div>
                             </li>
-                            <li><a href="contact.html">Đăng nhập</a></li>
+                            <li><a href="/login">Đăng nhập</a></li>
                         </ul>
                         <a class="menu-trigger">
                             <span>Menu</span>
@@ -115,10 +116,7 @@
     <!-- ***** Header Area End ***** -->
     <!-- ***** Main Banner Area Start ***** -->
     <div class="main-banner" id="top">
-        <video autoplay="" muted="" loop="" id="bg-video">
-            <source src="~/images/video.mp4" type="video/mp4">
-        </video>
-
+        <img id="bg-video" src="/images/blog-image-1-940x460.jpg"/>
         <div class="video-overlay header-text">
             <div class="caption">
                 <h6>Được viết trên nền ASP.NET</h6>
@@ -150,15 +148,61 @@
     <!-- ***** Testimonials Item End ***** -->
     <!-- ***** Footer Start ***** -->
     <footer>
-        <div class="container">
+        <!-- Grid container -->
+        <div class="container p-2">
+            <!--Grid row-->
             <div class="row">
-                <div class="col-lg-12">
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">CÔNG TY PJOBS</h5>
+
                     <p>
-                        Copyright © 2020 Company Name
-                        - Template by: <a href="https://www.phpjabbers.com/">PHPJabbers.com</a>
+                        Cổng thông tin cung cấp các tin tuyển dụng việc làm của doanh nghiệp đến cá nhân. Yêu cầu cơ bản để các thiết kế website này hoạt động hiệu quả là thông tin chuẩn, chính xác và nhanh nhạy. Xin hãy tin tưởng trang web của chúng tôi!
                     </p>
+                    <img src="~/images/jobpeople.jpg" style="width:400px">
+
+
                 </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">LIÊN HỆ</h5>
+
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <p>Email: pjobscompany@gmail.com</p>
+                        </li>
+                        <li>
+                            <p>SĐT 1: 090-619-4433</p>
+                        </li>
+                        <li>
+                            <p>SĐT 2: 070-356-2459</p>
+                        </li>
+                        <li>
+                            <p>Địa chỉ: Tầng 77 Tòa Nhà Bitexco 2 Hải Triều, Bến Nghé, Quận 1</p>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-0">PHƯƠNG TIỆN</h5>
+                    <br />
+                    <ul class="list-unstyled">
+                        <li style="color:white"><a style="color:white; text-decoration:none" href="https://www.facebook.com/"><i  class="fab fa-facebook-square fa-3x"></i></a></li>
+                        <br/>
+                        <li style="color:white"><a style="color:white; text-decoration:none" href="https://workspace.google.com/intl/vi/"><i class="fab fa-google-plus-square fa-3x"></i></a></li>
+                    </ul>
+                </div>
+                <!--Grid column-->
             </div>
+            <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2020 Copyright:
+            <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
         </div>
     </footer>
 

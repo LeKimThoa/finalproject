@@ -29,7 +29,7 @@ namespace PJobs
             services.AddControllersWithViews();
 
             var connectionString = Configuration.GetConnectionString("VieclamConnectionString");
-            services.AddDbContext<VIECLAMDBContextcs>(options => options.UseSqlServer());
+            services.AddDbContext<VIECLAMContext>(options => options.UseSqlServer(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

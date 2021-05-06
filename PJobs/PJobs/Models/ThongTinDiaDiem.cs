@@ -7,14 +7,13 @@ namespace PJobs.Models
 {
     public partial class ThongTinDiaDiem
     {
-        public ThongTinDiaDiem()
-        {
-            ThongTinNganhNghes = new HashSet<ThongTinNganhNghe>();
-        }
-
+        public long Id { get; set; }
         public long MaThanhPho { get; set; }
-        public long MaQuanHuyen { get; set; }
+        public long MaQuan { get; set; }
+        public long MaNhaTuyenDung { get; set; }
 
-        public virtual ICollection<ThongTinNganhNghe> ThongTinNganhNghes { get; set; }
+        public virtual NhaTuyenDung MaNhaTuyenDungNavigation { get; set; }
+        public virtual QuanHuyen MaQuanNavigation { get; set; }
+        public virtual ThanhPho MaThanhPhoNavigation { get; set; }
     }
 }

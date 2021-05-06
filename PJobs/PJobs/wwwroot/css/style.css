@@ -533,9 +533,9 @@ banner
 
 #bg-video {
     min-width: 100%;
-    min-height: 100vh;
+    min-height: 600px;
     max-width: 100%;
-    max-height: 100vh;
+    max-height: 600px;
     object-fit: cover;
     z-index: -1;
 }
@@ -893,17 +893,17 @@ trainers
 --------------------------------------------- 
 */
 
-#trainers { 
-  padding-bottom: 90px; 
+#trainers {
+    padding-bottom: 90px;
 }
 
-#trainers .trainer-item {
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
-  padding: 15px;
-  margin-bottom: 30px;
-}
+    #trainers .trainer-item {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+        padding: 15px;
+        margin-bottom: 30px;
+    }
 
 #trainers .trainer-item img {
   width: 100%;
@@ -911,7 +911,7 @@ trainers
 }
 
 #trainers .trainer-item span {
-  font-size: 13px;
+  font-size: 20px;
   font-weight: 500;
   color: #ed563b;
   display: inline-block;
@@ -1041,12 +1041,13 @@ footer
 --------------------------------------------- 
 */
 footer {
-  text-align: center;
-  padding: 30px 0px;
+    text-align: center;
+    padding: 30px 0px;
+    background-color: #ed563b;
 }
 
 footer p {
-  color: #232d39;
+  color: #ffffff;
   font-size: 13px;
 }
 
@@ -1216,8 +1217,8 @@ responsive
 }
 
 .dropdown-menu a {
-  line-height: 1.3;
-  color: #fff;
+    line-height: 1.3;
+    color: #ed563b;
 }
 
 

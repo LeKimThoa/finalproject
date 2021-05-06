@@ -10,6 +10,7 @@ namespace PJobs.Models
         public NhaTuyenDung()
         {
             PhanHois = new HashSet<PhanHoi>();
+            ThongTinDiaDiems = new HashSet<ThongTinDiaDiem>();
             TinTuyenDungs = new HashSet<TinTuyenDung>();
         }
 
@@ -22,11 +23,14 @@ namespace PJobs.Models
         public long ThanhPhoHoatDong { get; set; }
         public long QuanHuyenHoatDong { get; set; }
         public string DiaChiHoatDong { get; set; }
-        public byte[] AnhDaiDien { get; set; }
-        public long MaNghe { get; set; }
         public string MoTaCongTy { get; set; }
+        public string AnhDaiDien { get; set; }
+        public DateTime? NgayTao { get; set; }
+        public long LinhVuc { get; set; }
 
+        public virtual ThongTinLinhVuc LinhVucNavigation { get; set; }
         public virtual ICollection<PhanHoi> PhanHois { get; set; }
+        public virtual ICollection<ThongTinDiaDiem> ThongTinDiaDiems { get; set; }
         public virtual ICollection<TinTuyenDung> TinTuyenDungs { get; set; }
     }
 }

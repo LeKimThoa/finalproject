@@ -15,11 +15,10 @@ namespace PJobs.Models
 
         public long MaNghe { get; set; }
         public string TenNghe { get; set; }
-        public long? LinhVuc { get; set; }
-        public long MaThanhPho { get; set; }
-        public long MaQuanHuyen { get; set; }
+        public long MaLinhVuc { get; set; }
+        public long? LuotXem { get; set; }
 
-        public virtual ThongTinDiaDiem Ma { get; set; }
+        public virtual ThongTinLinhVuc MaLinhVucNavigation { get; set; }
         public virtual ICollection<Blog> Blogs { get; set; }
         public virtual ICollection<TinTuyenDung> TinTuyenDungs { get; set; }
     }
