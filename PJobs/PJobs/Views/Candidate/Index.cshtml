@@ -1,6 +1,6 @@
 ﻿@model List<UngVien>
 @{
-    Layout = "_Layout1";
+    Layout = "~/Views/Shared/_LayoutCandidate.cshtml";
 }
 
 <section class="section" id="trainers">
@@ -19,7 +19,10 @@
                         <div class="down-content">
                             <span>@item.HoTen</span>
                             <ul>
-                              
+                                @foreach (var kn in item.UngVienKiNangs)
+                                {
+                                    <li>@kn.MaKiNangNavigation.Tenkinang</li>
+                                }
                             </ul>
                             <p>@item.DiaChiChiTiet</p>
                             <ul class="social-icons">
@@ -35,3 +38,4 @@
         </div>
     </div>
 </section>
+

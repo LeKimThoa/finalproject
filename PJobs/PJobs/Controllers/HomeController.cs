@@ -13,8 +13,9 @@ namespace PJobs.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private VIECLAMContext ctx = new VIECLAMContext();
+
         private TinTuyenDungRepository tinTuyenDungRepository = new TinTuyenDungRepository();
+        private UngVienRepository ungVienRepository = new UngVienRepository();
         private PhanhoiRepository phanhoiRepository = new PhanhoiRepository();
         public HomeController(ILogger<HomeController> logger)
         {
@@ -32,28 +33,22 @@ namespace PJobs.Controllers
         {
             return View();
         }
-
+       
         public IActionResult Contact()
         {
-            ViewBag.mess = null;
-            return View();
+            PhanHoi model = new PhanHoi();
+            return View(model);
         }
         [HttpPost]
         public IActionResult Contact(PhanHoi model)
         {
-            if (ModelState.IsValid)
-            {
-                model.TinhTrang = 0;//
-                DateTime currentDate = DateTime.Now;
-
-                model.NgayPhanHoi = currentDate;
-                phanhoiRepository.themphanhoi(model);
-                ViewBag.mess = "Thong tin đã được gửi";
-                ModelState.Clear();
-                return Redirect("Contact");
-            }
-           
-            return View();
+            model.TinhTrang = 0;//
+            DateTime currentDate =  DateTime.Now;
+            
+            model.NgayPhanHoi = currentDate;
+            phanhoiRepository.themphanhoi(model);
+            ViewBag.mess = "Thong tin đã được gửi";
+            return View(model);
         }
 
         public IActionResult Text()

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PJobs.Models;
 using PJobs.Repository;
 using System;
@@ -20,6 +20,6 @@ namespace PJobs.Controllers
             return View(lst);
         }
 
-
+        
     }
 }

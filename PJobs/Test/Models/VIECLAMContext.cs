@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace PJobs.Models
+namespace Test.Models
 {
     public partial class VIECLAMContext : DbContext
     {
@@ -121,22 +121,24 @@ namespace PJobs.Models
 
                 entity.ToTable("PhanHoi");
 
+                entity.Property(e => e.MaPhanHoi).ValueGeneratedNever();
+
                 entity.Property(e => e.NgayPhanHoi).HasColumnType("date");
 
                 entity.Property(e => e.NoiDungPhanHoi)
                     .IsRequired()
                     .HasMaxLength(255);
 
-                entity.Property(e => e.Tieude).HasMaxLength(255);
-
                 entity.HasOne(d => d.MaCongTyNavigation)
                     .WithMany(p => p.PhanHois)
                     .HasForeignKey(d => d.MaCongTy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__PhanHoi__MaCongT__1920BF5C");
 
                 entity.HasOne(d => d.MaUngVienNavigation)
                     .WithMany(p => p.PhanHois)
                     .HasForeignKey(d => d.MaUngVien)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__PhanHoi__MaUngVi__1FCDBCEB");
             });
 
@@ -290,9 +292,9 @@ namespace PJobs.Models
 
             modelBuilder.Entity<UngVienKiNang>(entity =>
             {
-                entity.ToTable("UngVien_KiNang");
+                entity.HasKey(e => new { e.MaUngVien, e.MaKiNang });
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.ToTable("UngVien_KiNang");
 
                 entity.HasOne(d => d.MaKiNangNavigation)
                     .WithMany(p => p.UngVienKiNangs)

@@ -17,23 +17,21 @@ namespace PJobs.Repository
 
             List<UngVien> lst = ctx.UngViens.Include(x => x.UngVienKiNangs).ToList();
 
-            foreach (UngVien u in lst)
-            {
+            foreach (UngVien u in lst) {
                 List<UngVienKiNang> ls = u.UngVienKiNangs.ToList();
+               
 
 
-
-                foreach (UngVienKiNang uv in ls)
-                {
-
+                foreach (UngVienKiNang uv in ls) {
+       
 
                     uv.MaKiNangNavigation = ctx.KiNangs.Where(x => x.MaKiNang == uv.MaKiNang).Single(); ;
-
+                   
                 }
-
-
+                
+                
             }
-
+          
             return lst;
         }
     }
