@@ -11,7 +11,7 @@ namespace PJobs.Repository
 
         VIECLAMContext ctx = new VIECLAMContext();
 
-        public PhanHoi themphanhoi(PhanHoi ph)
+        public PhanHoi themphanhoi (PhanHoi ph)
         {
             ctx.PhanHois.Add(ph);
             ctx.SaveChanges();
