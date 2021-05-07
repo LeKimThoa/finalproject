@@ -13,7 +13,7 @@ namespace PJobs.Models
         }
 
         public int MaKiNang { get; set; }
-        public string Tenkinang { get; set; }
+        public string TenKiNang { get; set; }
 
         public virtual ICollection<UngVienKiNang> UngVienKiNangs { get; set; }
     }

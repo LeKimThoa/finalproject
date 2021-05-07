@@ -13,7 +13,7 @@ namespace PJobs.Models
         public long? MaUngVien { get; set; }
         public long? MaCongTy { get; set; }
         public DateTime? NgayPhanHoi { get; set; }
-        public string Tieude { get; set; }
+        public string TieuDe { get; set; }
 
         public virtual NhaTuyenDung MaCongTyNavigation { get; set; }
         public virtual UngVien MaUngVienNavigation { get; set; }

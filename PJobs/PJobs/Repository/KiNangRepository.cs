@@ -24,15 +24,25 @@ namespace PJobs.Repository
         }
 
 
-        public KiNang suakinang(int id,KiNang kn)
+        public List<KiNang> xoakinang(int kn)
         {
-            return kn;
+
+            KiNang kn_db = ctx.KiNangs.Where(x => x.MaKiNang == kn).SingleOrDefault();
+            ctx.KiNangs.Remove(kn_db);
+            ctx.SaveChanges();
+            return ctx.KiNangs.ToList();
         }
 
-
-        public KiNang xoaphanhoi(int id, KiNang kn)
+        public KiNang suanhatuyendung(KiNang kn)
         {
+            KiNang kn_db = ctx.KiNangs.Where(x => x.MaKiNang == kn.MaKiNang).SingleOrDefault();
+            kn_db.TenKiNang = kn.TenKiNang;
+            ctx.SaveChanges();
             return kn;
+        }
+        public List<KiNang> timkiemkynang_theoten(string ten)
+        {
+            return null;
         }
     }
 }
