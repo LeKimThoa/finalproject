@@ -29,10 +29,7 @@ namespace PJobs.Controllers
             //passing model/data to  view
             return View(lst);
         }
-        public IActionResult Admin()
-        {
-            return View();
-        }
+       
        
         public IActionResult Contact()
         {
@@ -47,7 +44,7 @@ namespace PJobs.Controllers
             
             model.NgayPhanHoi = currentDate;
             phanhoiRepository.themphanhoi(model);
-            ViewBag.mess = "Thong tin đã được gửi";
+            //ViewBag.mess = "thong tin đã được gửi";
             return View(model);
         }
 

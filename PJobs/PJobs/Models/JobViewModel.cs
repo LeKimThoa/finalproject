@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 using PJobs.Repository;
+=======
+﻿using PJobs.Repository;
+>>>>>>> Stashed changes
 using System;
 using System.Collections.Generic;
 
@@ -12,4 +16,8 @@ namespace PJobs.Models
         public int MaKiNang { get; set; }
         public List<KiNang> DSKiNang { get; set; }
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

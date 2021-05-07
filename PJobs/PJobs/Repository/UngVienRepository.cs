@@ -34,5 +34,15 @@ namespace PJobs.Repository
           
             return lst;
         }
+        public UngVien themungvien(UngVien uv)
+        {
+            ctx.UngViens.Add(uv);
+            ctx.SaveChanges();
+            return uv;
+        }
+        public List<PhanHoi> dsPhanHoi()
+        {
+            return ctx.PhanHois.ToList();
+        }
     }
 }
