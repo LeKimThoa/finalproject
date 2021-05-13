@@ -12,10 +12,7 @@ namespace PJobs.Controllers
 {
     public class BlogController : Controller
     {
-        private VIECLAMContext ctx = null;
-        public BlogController(VIECLAMContext _ctx) {
-            ctx = _ctx;
-        }
+        VIECLAMContext ctx = new VIECLAMContext();
 
         public IActionResult Index()
         {

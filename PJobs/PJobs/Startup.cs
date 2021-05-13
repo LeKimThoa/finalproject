@@ -30,17 +30,17 @@ namespace PJobs
             services.AddControllersWithViews();
 
             var connectionString = Configuration.GetConnectionString("VieclamConnectionString");
-<<<<<<< Updated upstream
-            services.AddDbContext<VIECLAMContext>(options => options.UseSqlServer(connectionString));
-=======
+
             services.AddDbContext<VIECLAMDBContextcs>(options => options.UseSqlServer());
             //dangky dịc vu
             services.AddTransient<TinTuyenDungRepository, TinTuyenDungRepository> ();
             services.AddTransient<UngVienRepository, UngVienRepository>();
             services.AddTransient<NgangNgheRepository, NgangNgheRepository>();
-          
+            services.AddTransient<BlogRepository, BlogRepository>();
+            services.AddTransient<QuanHuyenRepository, QuanHuyenRepository>();
+            services.AddTransient<ThanhPhoRepository, ThanhPhoRepository>();
+            services.AddTransient<LinhVucRepository, LinhVucRepository>();
 
->>>>>>> Stashed changes
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

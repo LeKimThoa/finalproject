@@ -36,7 +36,7 @@ namespace PJobs.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-LGSU8J3; user id =sa;password=1;database=VIECLAM");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-LGSU8J3; user id=sa;password=1;database=VIECLAM");
             }
         }
 
@@ -147,6 +147,12 @@ namespace PJobs.Models
 
                 entity.ToTable("PhanHoi");
 
+                entity.Property(e => e.Email)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.HoTen).HasMaxLength(50);
+
                 entity.Property(e => e.NgayPhanHoi).HasColumnType("date");
 
                 entity.Property(e => e.NoiDungPhanHoi)
@@ -154,16 +160,6 @@ namespace PJobs.Models
                     .HasMaxLength(255);
 
                 entity.Property(e => e.TieuDe).HasMaxLength(50);
-
-                entity.HasOne(d => d.MaCongTyNavigation)
-                    .WithMany(p => p.PhanHois)
-                    .HasForeignKey(d => d.MaCongTy)
-                    .HasConstraintName("FK__PhanHoi__MaCongT__1920BF5C");
-
-                entity.HasOne(d => d.MaUngVienNavigation)
-                    .WithMany(p => p.PhanHois)
-                    .HasForeignKey(d => d.MaUngVien)
-                    .HasConstraintName("FK__PhanHoi__MaUngVi__1FCDBCEB");
             });
 
             modelBuilder.Entity<QuanHuyen>(entity =>

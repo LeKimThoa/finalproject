@@ -1,4 +1,4 @@
-﻿ @model Blog
+﻿ @model QuanHuyen
 
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -16,7 +16,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Quản lý blog</h1>
+                            <h1>Quản lý quận/huyện</h1>
                         </div>
 
                     </div>
@@ -41,7 +41,7 @@
                             <div class="card">
                                 <div class="card-header">
 
-                                    <h3 class="card-title">Bảng Blog</h3>
+                                    <h3 class="card-title">Bảng Quận Huyện</h3>
                                     <div></div>
                                     <div style="margin-left:75%" class="btn-group ">
 
@@ -58,39 +58,29 @@
                                         <thead>
                                             <tr>
 
-                                                <th>Tên Blog</th>
-                                                <th>Ảnh Blog</th>
-                                                <th>Nội dung Blog</th>
-                                                <th>Ngày đăng Blog</th>
-                                                <th>Lượt xem</th>
+                                                <th>Mã Quận</th>
+                                                <th>Tên Quận</th>
 
                                                 <th>Thao tac</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach (var item in ViewBag.DSBlog)
+                                            @foreach (var item in ViewBag.DSQHuyen)
                                             {
                                                 <tr data-widget="expandable-table" aria-expanded="false">
-                                                    <td> @item.TenBlog</td>
+                                                    <td> @item.MaQuan</td>
+                                                    
                                                     <td>
-                                                        <img src="~/images/@item.AnhBlog" style="width:30px" />
+                                                        @item.TenQuan
                                                     </td>
-                                                    <td>
-                                                        @item.NoiDungBlog
-                                                    </td>
-                                                    <td>
-                                                        @item.NgayDangBlog
-                                                    </td>
-                                                    <td>@item.LuotXem</td>
 
                                                     <td>
-                                                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                            <i class="fas fa-upload"></i>
-                                                            <span>Edit</span>
-                                                        </button>
+                                                      
+                                                            @Html.ActionLink("Edit", "SuaQuanHuyen", "admin", new { id = @item.MaQuan })
+                                                       
 
 
-                                                        @Html.ActionLink("Delete", "XoaBlog", "admin", new { id = @item.MaBlog })
+                                                        @Html.ActionLink("Delete", "XoaQuanHuyen", "admin", new { id = @item.MaQuan })
 
                                                     </td>
 
@@ -119,7 +109,7 @@
         </div>
         <!-- Button trigger modal -->
         <!-- Modal -->
-        @using (Html.BeginForm("SuaBlog", "admin", FormMethod.Post))
+      @*  @using (Html.BeginForm("SuaBlog", "admin", FormMethod.Post))
         {
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -132,25 +122,7 @@
                         </div>
                         <div class="modal-body">
                             <form>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên Blog</label>
-                                    @Html.EditorFor(model => model.TenBlog, new { htmlAttributes = new { @class = "form-control" } })
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Mã nghề</label>
-                                    <input type="number" class="form-control" placeholder="Nhập mã nghề mới" value="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Nội dung Blog</label>
-                                    @Html.EditorFor(model => model.NoiDungBlog, new { htmlAttributes = new { @class = "form-control" } })
-                                </div>
-                                <select class="form-control" title="Hãy chọn nghề nghiệp của bạn">
-                                    @foreach (var job in ViewBag.DSNganhNghe)
-                                    {
-                                        <option value="@job.MaNghe">@job.TenNghe</option>
-                                    }
-
-                                </select>
+                                
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -162,9 +134,9 @@
                     </div>
                 </div>
             </div>
-        }
+        }*@
             <!-- THÊM BLOG -->
-            @using (Html.BeginForm("themblog", "admin", FormMethod.Post))
+            @using (Html.BeginForm("themQuanHuyen", "admin", FormMethod.Post))
             {
                 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -180,19 +152,10 @@
                                 <form>
 
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Tên Blog</label>
-                                        @Html.TextBoxFor(m => m.TenBlog)
+                                        <label for="exampleInputEmail1">Tên Quận</label>
+                                        @Html.TextBoxFor(m => m.TenQuan)
                                     </div>
-                                    <div class="form-group">
-                                        <label for="exampleFormControlTextarea1">Nội dung Blog</label>
-                                        @Html.TextAreaFor(m => m.NoiDungBlog)
-                                    </div>
-                                    <select class="form-control" title="Hãy chọn nghề nghiệp của bạn">
-                                        @foreach (var job in ViewBag.DSNganhNghe)
-                                        {
-                                            <option value="@job.MaNghe">@job.TenNghe</option>
-                                        }
-                                    </select>
+
                                 </form>
                             </div>
                             <div class="modal-footer">

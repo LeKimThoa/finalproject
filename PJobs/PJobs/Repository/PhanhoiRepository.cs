@@ -39,8 +39,7 @@ namespace PJobs.Repository
             ph_db.TinhTrang = ph.TinhTrang;
             ph_db.NgayPhanHoi = ph.NgayPhanHoi;
             ph_db.TieuDe = ph.TieuDe;
-            ph_db.Email = ph.Email;
-            ph_db.HoTen = ph.HoTen;
+           
             ctx.SaveChanges();
             return ph;
         }
