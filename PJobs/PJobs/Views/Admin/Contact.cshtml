@@ -1,66 +1,56 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1>Contact us</h1>
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Contact us</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div><!-- /.container-fluid -->
-            </section>
-
-            <!-- Main content -->
             <section class="content">
+                <div class="container-fluid">
 
-                <!-- Default box -->
-                <div class="card">
-                    <div class="card-body row">
-                        <div class="col-5 text-center d-flex align-items-center justify-content-center">
-                            <div class="">
-                                <h2>Admin<strong>LTE</strong></h2>
-                                <p class="lead mb-5">
-                                    123 Testing Ave, Testtown, 9876 NA<br>
-                                    Phone: +1 234 56789012
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-7">
-                            <div class="form-group">
-                                <label for="inputName">Name</label>
-                                <input type="text" id="inputName" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail">E-Mail</label>
-                                <input type="email" id="inputEmail" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label for="inputSubject">Subject</label>
-                                <input type="text" id="inputSubject" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label for="inputMessage">Message</label>
-                                <textarea id="inputMessage" class="form-control" rows="4"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" class="btn btn-primary" value="Send message">
+                    <div class="row">
+                        <div class="col-12">
+                            
+                                <div class="card-header">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-left:500px;">
+                                        Open modal
+                                    </button>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
-
             </section>
-            <!-- /.content -->
+         </div>
+     </div>
+</body>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Recipient:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Message:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div>
         </div>
-       
+    </div>
+</div>
+

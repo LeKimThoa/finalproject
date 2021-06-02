@@ -31,7 +31,7 @@ namespace PJobs
 
             var connectionString = Configuration.GetConnectionString("VieclamConnectionString");
 
-            services.AddDbContext<VIECLAMDBContextcs>(options => options.UseSqlServer());
+            services.AddDbContext<VIECLAMDBContextcs>(options => options.UseSqlServer(connectionString));
             //dangky dịc vu
             services.AddTransient<TinTuyenDungRepository, TinTuyenDungRepository> ();
             services.AddTransient<UngVienRepository, UngVienRepository>();
@@ -40,7 +40,7 @@ namespace PJobs
             services.AddTransient<QuanHuyenRepository, QuanHuyenRepository>();
             services.AddTransient<ThanhPhoRepository, ThanhPhoRepository>();
             services.AddTransient<LinhVucRepository, LinhVucRepository>();
-
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,7 +60,7 @@ namespace PJobs
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -68,6 +68,7 @@ namespace PJobs
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

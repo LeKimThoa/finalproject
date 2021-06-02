@@ -20,6 +20,8 @@ namespace PJobs.Controllers
         private ThanhPhoRepository _thanhphoRepository = null;
         private LinhVucRepository _linhVucRepository = null;
 
+ 
+
         public AdminController(NgangNgheRepository ngangNgheRepository, TinTuyenDungRepository tinTuyenDungRepository, BlogRepository blogRepository, QuanHuyenRepository quanHuyenRepository, ThanhPhoRepository thanhPhoRepository,LinhVucRepository linhVucRepository) {
             _ngangNgheRepository = ngangNgheRepository;
             _tinTuyenDungRepository = tinTuyenDungRepository;
@@ -27,6 +29,7 @@ namespace PJobs.Controllers
             _quanhuyenRepository = quanHuyenRepository;
             _thanhphoRepository = thanhPhoRepository;
             _linhVucRepository = linhVucRepository;
+          
         }
 
         public IActionResult Index()
@@ -176,6 +179,24 @@ namespace PJobs.Controllers
             List<ThongTinNganhNghe> ds = _ngangNgheRepository.XoaThongTinNganhNghe(id);
             return RedirectToAction("Danhsachnganhnghe");
         }
+        public IActionResult SuaNganhNghe(int id)
+        {
+            ThongTinNganhNghe ng = _ngangNgheRepository.timkiemNganhNghe_theoid(id);
+            return View("DanhsachngannhngheEdited", ng);
+        }
+        [HttpPost]
+        public IActionResult SuaNganhNghe(ThongTinNganhNghe ng)
+        {
+            _ngangNgheRepository.suaThongTinNganhNghe(ng);
+            return RedirectToAction("Danhsachnganhnghe");
+        }
+        [HttpPost]
+        public IActionResult themNganhNghe(ThongTinNganhNghe ng)
+        {
+            _ngangNgheRepository.themThongTinNganhNghe(ng);
+            return RedirectToAction("Danhsachnganhnghe");
+        }
+
 
         //Account
         public IActionResult Account()

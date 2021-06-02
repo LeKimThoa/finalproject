@@ -36,7 +36,7 @@ namespace PJobs.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-LGSU8J3; user id=sa;password=1;database=VIECLAM");
+                optionsBuilder.UseSqlServer("Server=(local)\\SQLEXPRESS; user id =sa;password=1;database=VIECLAM");
             }
         }
 
@@ -92,8 +92,8 @@ namespace PJobs.Models
 
                 entity.ToTable("NhaTuyenDung");
 
-                entity.HasIndex(e => e.Email, "IX_NhaTuyenDung")
-                    .IsUnique();
+                //entity.HasIndex(e => e.Email, "IX_NhaTuyenDung")
+                //    .IsUnique();
 
                 entity.Property(e => e.AnhDaiDien)
                     .HasMaxLength(50)
@@ -147,11 +147,9 @@ namespace PJobs.Models
 
                 entity.ToTable("PhanHoi");
 
-                entity.Property(e => e.Email)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.Email).HasMaxLength(255);
 
-                entity.Property(e => e.HoTen).HasMaxLength(50);
+                entity.Property(e => e.HoTen).HasMaxLength(255);
 
                 entity.Property(e => e.NgayPhanHoi).HasColumnType("date");
 
@@ -292,8 +290,8 @@ namespace PJobs.Models
 
                 entity.ToTable("UngVien");
 
-                entity.HasIndex(e => e.Email, "IX_UngVien")
-                    .IsUnique();
+                //entity.HasIndex(e => e.Email, "IX_UngVien")
+                //    .IsUnique();
 
                 entity.Property(e => e.AnhDaiDien)
                     .HasMaxLength(255)

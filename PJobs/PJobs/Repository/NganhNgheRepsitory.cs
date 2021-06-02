@@ -18,7 +18,14 @@ namespace PJobs.Repository
             return ctx.ThongTinNganhNghes.Include(tb => tb.MaLinhVucNavigation).ToList();
         }
 
-
+        public ThongTinNganhNghe  suaThongTinNganhNghe(ThongTinNganhNghe ng)
+        {
+            ThongTinNganhNghe ng_db = ctx.ThongTinNganhNghes.Where(x => x.MaNghe == ng.MaNghe).SingleOrDefault();
+            //MaNghe, TenNghe, MaLinhVuc, LuotXem
+            ng_db.TenNghe = ng.TenNghe;
+            ctx.SaveChanges();
+            return ng;
+        }
         public List<ThongTinNganhNghe> XoaThongTinNganhNghe(int id)
         {
 
@@ -27,6 +34,16 @@ namespace PJobs.Repository
             ctx.SaveChanges();
 
             return ctx.ThongTinNganhNghes.Include(tb => tb.MaLinhVucNavigation).ToList();
+        }
+        public ThongTinNganhNghe themThongTinNganhNghe(ThongTinNganhNghe ng)
+        {
+            ctx.ThongTinNganhNghes.Add(ng);
+            ctx.SaveChanges();
+            return ng;
+        }
+        public ThongTinNganhNghe timkiemNganhNghe_theoid(int id)
+        {
+            return ctx.ThongTinNganhNghes.Where(ng => ng.MaNghe == id).SingleOrDefault();
         }
     }
 }

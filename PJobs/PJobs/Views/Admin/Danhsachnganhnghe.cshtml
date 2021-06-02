@@ -3,7 +3,6 @@
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
@@ -47,13 +46,13 @@
                                     <h3 class="card-title">Fixed Header Table</h3>
                                     <div></div>
                                     <div style="margin-left:75%" class="btn-group ">
-      
+
                                         <button type="submit" class="btn btn-primary">
                                             <i class="fas fa-upload"></i>
                                             <span>Add</span>
                                         </button>
                                     </div>
-                                   
+
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body table-responsive p-0" style="height: 300px;">
@@ -64,37 +63,37 @@
                                                 <th>Ten</th>
                                                 <th>Linh Vuc</th>
                                                 <th>So luot xem</th>
-                                                                                         
+
                                                 <th>Thao tac</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach (var item in Model)
+                                           @foreach (var item in Model)
+                                         
                                             {
-                                            <tr data-widget="expandable-table" aria-expanded="false">
-                                                <td>@item.TenNghe</td>
-                                                <td>
-                                                 
-                                                    @Html.ActionLink(@item.MaLinhVucNavigation.TenLinhVuc, "DanhsachTinTuyenDungTheoNganhNghe", "admin", new  {id= @item.MaLinhVuc })
+                                                <tr data-widget="expandable-table" aria-expanded="false">
+                                                    <td>@item.TenNghe</td>
+                                                    <td>
 
-                                                
-                                               
-                                                </td>
+                                                        @Html.ActionLink(@item.MaLinhVucNavigation.TenLinhVuc, "DanhsachTinTuyenDungTheoNganhNghe", "admin", new { id = @item.MaLinhVuc })
 
-                                                <td>@item.LuotXem</td>
-                                              
-                                                <td>
-                                                    <button type="submit" class="btn btn-primary">
-                                                        <i class="fas fa-upload"></i>
-                                                        <span>Edit</span>
-                                                    </button>
+                                                    </td>
 
+                                                    <td>@item.LuotXem</td>
 
-                                                    @Html.ActionLink("Delete", "XoaNganhNghe", "Admin", new { id = @item.MaNghe})
-                                                   
-                                                </td>
-                                             
-                                            </tr>
+                                                    <td>
+                                                        @*<button type="submit" class="btn btn-primary">
+                                                            <i class="fas fa-upload"></i>
+                                                            <span>Edit</span>
+                                                        </button>*@
+
+                                                        @Html.ActionLink("Edit", "SuaNganhNghe", "admin", new { id = @item.MaNghe })
+
+                                                        @Html.ActionLink("Delete", "XoaNganhNghe", "Admin", new { id = @item.MaNghe })
+
+                                                    </td>
+
+                                                </tr>
                                             }
                                         </tbody>
                                     </table>
@@ -117,8 +116,5 @@
             </section>
             <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
-        <!-- Control Sidebar -->
-        <!-- /.control-sidebar -->
     </div>
 </body>

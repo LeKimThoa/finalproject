@@ -10,7 +10,7 @@ namespace PJobs.Repository
     {
         VIECLAMContext ctx = new VIECLAMContext();
 
-        public List<KiNang> getAllBlog() {
+        public List<KiNang> getAllKiNang() {
            return  ctx.KiNangs.ToList();
 
         }
@@ -33,7 +33,7 @@ namespace PJobs.Repository
             return ctx.KiNangs.ToList();
         }
 
-        public KiNang suanhatuyendung(KiNang kn)
+        public KiNang suakinang(KiNang kn)
         {
             KiNang kn_db = ctx.KiNangs.Where(x => x.MaKiNang == kn.MaKiNang).SingleOrDefault();
             kn_db.TenKiNang = kn.TenKiNang;
