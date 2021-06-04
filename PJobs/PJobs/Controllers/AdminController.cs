@@ -1,5 +1,5 @@
-
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PJobs.Models;
 using PJobs.Repository;
 using System;
@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace PJobs.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
 

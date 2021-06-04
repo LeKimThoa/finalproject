@@ -19,8 +19,15 @@ namespace PJobs.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("PJobsContextConnection")));
 
-                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                 .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<PJobsContext>();
+                services.AddAuthorization(options =>
+                {
+                    options.AddPolicy("RequireAdministratorRole",
+                     policy => policy.RequireRole("Administrator", "Candidate", "Employer"));
+
+                });
             });
         }
     }
